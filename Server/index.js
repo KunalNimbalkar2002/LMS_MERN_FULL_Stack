@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./Models/userModel");
+const jwt = require("jsonwebtoken");
 
 app.use(cors());
 app.use(express.json());
@@ -33,18 +34,34 @@ app.post("/api/register", async (req, res) => {
 });
 
 //This is a Login Route
-// app.post("/api/login", async (req, res) => {
-//   const user = await User.findOne({
-//     email: req.body.email,
-//     password: req.body.password,
-//   });
+app.post("/api/login", async (req, res) => {
+  const user = await User.findOne({
+    email: req.body.email,
+    password: req.body.password,
+  });
 
-//   if (user) {
-//     res.json({ status: "ok", user: true });
-//   } else {
-//     res.json({ status: "error", user: false });
-//   }
-// });
+  if (user) {
+    //creating jwt token after sign in
+    const token = jwt.sign(
+      {
+        name: user.name,
+        email: user.email,
+      },
+      "secret"
+    );
+
+    res.json({ status: "ok", user: token });
+    // console.log("token:::::::::::", token);
+  } else {
+    res.json({ status: "error", user: false });
+  }
+});
+
+app.get("/api/getusers", (req, res) => {
+  const user = User.find()
+    .then((users) => res.json(users))
+    .catch((err) => res.json(err));
+});
 
 app.listen(1337, () => {
   console.log("Server started on 1337");

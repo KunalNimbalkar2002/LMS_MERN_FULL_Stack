@@ -1,17 +1,35 @@
 import React from "react";
 import "./Dashboard.css";
-import { Link } from "react-router-dom";
-import LoginPage from "../Authentication/LoginPage/LoginPage";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
         <h4> Dashboard</h4>
         <div>
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="dashboard-link">
+            Login
+          </Link>
           <br />
-          <Link to="/register">Register</Link>
+          <Link to="/register" className="dashboard-link">
+            Register
+          </Link>
+          <br />
+          <Link to="/userlist" className="dashboard-link">
+            Users
+          </Link>
+          <br />
+          <button onClick={handleLogout} className="dashboard-button">
+            Logout
+          </button>
         </div>
       </div>
     </div>

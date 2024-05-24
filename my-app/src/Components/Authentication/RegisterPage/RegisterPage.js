@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // this function sends the data to the server from "Headers and body "
+  const navigate = useNavigate();
+
+  //this function sends the data to the server from "Headers and body "
 
   const RegisterUser = async (e) => {
     e.preventDefault();
@@ -25,6 +29,14 @@ const RegisterPage = () => {
 
       const data = await response.json();
       console.log(data);
+
+      if (data.status === "ok") {
+        alert("Register Successfully!!!!!");
+        navigate("/login");
+      } else {
+        alert("User Already Exists!!!!!");
+      }
+
       setName("");
       setEmail("");
       setPassword("");
@@ -32,6 +44,7 @@ const RegisterPage = () => {
       console.error("Registration failed:", error);
     }
   };
+
   //-----------------------------------------------------------------------------------------------------------------------------------
   return (
     <Container>

@@ -30,3 +30,18 @@
 .widgets li {
   margin-bottom: 5px;
 }
+.dashboard-link {
+  text-decoration: none;                                      
+  color: rgb(247, 247, 252);
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.dashboard-button {
+  padding: 5px;
+  border: none;
+  background-color: #0D6EFD;;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}

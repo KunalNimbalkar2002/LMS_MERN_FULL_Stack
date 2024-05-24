@@ -17,9 +17,11 @@ const User = new mongoose.Schema(
     },
   },
   {
-    collation: "lms-userData",
+    collection: "lms-userData",
   }
 );
+
+User.index({ email: 1 }, { unique: true });
 
 const model = mongoose.model("LMSUserData", User);
 

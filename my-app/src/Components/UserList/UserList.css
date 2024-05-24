@@ -1,0 +1,27 @@
+/* Add these styles to your CSS file */
+
+.uselist-main-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .userlist-second-div {
+    width: 50%;
+  }
+  
+  .userlist-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .userlist-table th,
+  .userlist-table td {
+    padding: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+  }
+  
+
+  

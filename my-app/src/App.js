@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import LoginPage from "./Components/Authentication/LoginPage/LoginPage";
 import RegisterPage from "./Components/Authentication/RegisterPage/RegisterPage";
+import HomePageAdmin from "./Components/HomePageAdmin/HomePageAdmin";
+import UserList from "./Components/UserList/UserList";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
               <Routes>
                 <Route path="/login" Component={LoginPage} />
                 <Route path="/register" Component={RegisterPage} />
+                <Route path="/homepageadmin" Component={HomePageAdmin} />
+                <Route path="/userlist" Component={UserList} />
               </Routes>
             </div>
           </div>
