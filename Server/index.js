@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./Models/userModel");
+const FormData = require("./Models/formModel");
 const jwt = require("jsonwebtoken");
 
 app.use(cors());
@@ -54,6 +55,25 @@ app.post("/api/login", async (req, res) => {
     // console.log("token:::::::::::", token);
   } else {
     res.json({ status: "error", user: false });
+  }
+});
+
+//  This is a formdata submit route
+app.post("/api/formdata", async (req, res) => {
+  console.log("data from frontend :::::::::", req.body);
+  try {
+    const user = await FormData.create({
+      name: req.body.name,
+      email: req.body.email,
+      age: req.body.age,
+      gender: req.body.gender,
+      isStudent: req.body.isStudent,
+      file: req.body.file,
+    });
+    res.json({ status: "ok" });
+    console.log("response for formdata:::::", res);
+  } catch (error) {
+    res.json({ status: "error", error: "Duplicate email" });
   }
 });
 

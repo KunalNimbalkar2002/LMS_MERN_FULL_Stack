@@ -7,6 +7,8 @@ import LoginPage from "./Components/Authentication/LoginPage/LoginPage";
 import RegisterPage from "./Components/Authentication/RegisterPage/RegisterPage";
 import HomePageAdmin from "./Components/HomePageAdmin/HomePageAdmin";
 import UserList from "./Components/UserList/UserList";
+import Protected from "./Components/Authentication/ProtectedRoutes/Protected";
+import FormComponent from "./Components/Form/Form";
 
 function App() {
   return (
@@ -19,10 +21,13 @@ function App() {
             </div>
             <div className="view-divv">
               <Routes>
-                <Route path="/login" Component={LoginPage} />
+                <Route element={<Protected />}>
+                  <Route path="/homepageadmin" Component={HomePageAdmin} />
+                  <Route path="/userlist" Component={UserList} />
+                  <Route path="/form" Component={FormComponent} />
+                </Route>
+                <Route path="/" Component={LoginPage} />
                 <Route path="/register" Component={RegisterPage} />
-                <Route path="/homepageadmin" Component={HomePageAdmin} />
-                <Route path="/userlist" Component={UserList} />
               </Routes>
             </div>
           </div>
